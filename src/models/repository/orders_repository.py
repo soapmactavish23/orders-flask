@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, List
 
 
 class OrdersRepository:
@@ -13,3 +13,11 @@ class OrdersRepository:
     def insert_list_of_documents(self, list_of_documents: list) -> None:
         collection = self.__db_connection.get_collection(self.__connection_name)
         collection.insert_many(list_of_documents)
+
+    def select_many(self, doc_filter: dict) -> List:
+        collection = self.__db_connection.get_collection(self.__connection_name)
+        return collection.find(doc_filter)
+
+    def select_one(self, doc_filter: dict) -> dict:
+        collection = self.__db_connection.get_collection(self.__connection_name)
+        return collection.find_one(doc_filter)
