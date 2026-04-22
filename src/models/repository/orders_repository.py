@@ -21,3 +21,11 @@ class OrdersRepository:
     def select_one(self, doc_filter: dict) -> dict:
         collection = self.__db_connection.get_collection(self.__connection_name)
         return collection.find_one(doc_filter)
+
+    def select_many_with_properties(self, doc_filter: dict) -> List:
+        collection = self.__db_connection.get_collection(self.__connection_name)
+        return collection.find(doc_filter, {"_id": 0, "cupom": 0})
+
+    def select_if_property_exists(self) -> dict:
+        collection = self.__db_connection.get_collection(self.__connection_name)
+        return collection.find({"address": {"$exists": True}})
