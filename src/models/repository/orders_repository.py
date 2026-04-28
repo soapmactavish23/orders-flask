@@ -1,5 +1,7 @@
 from typing import Dict, List
 
+from bson import ObjectId
+
 
 class OrdersRepository:
     def __init__(self, db_connection):
@@ -29,3 +31,7 @@ class OrdersRepository:
     def select_if_property_exists(self) -> dict:
         collection = self.__db_connection.get_collection(self.__connection_name)
         return collection.find({"address": {"$exists": True}})
+
+    def select_by_object_id(self, object_id: str) -> list:
+        collection = self.__db_connection.get_collection(self.__connection_name)
+        return collection.find_one({"_id": ObjectId(object_id)})

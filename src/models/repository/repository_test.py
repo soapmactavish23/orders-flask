@@ -63,3 +63,10 @@ def test_select_if_property_exists():
     print(response)
     for doc in response:
         print(doc)
+
+def test_select_by_object_id():
+    orders_repository = OrdersRepository(conn)
+    object_id = "69e189bd593c7c1122a1c598"
+    response = orders_repository.select_by_object_id(object_id)
+    print()
+    print(response)
