@@ -64,6 +64,7 @@ def test_select_if_property_exists():
     for doc in response:
         print(doc)
 
+@pytest.mark.skip(reason="interacao com o banco de dados")
 def test_select_by_object_id():
     orders_repository = OrdersRepository(conn)
     object_id = "69e189bd593c7c1122a1c598"
